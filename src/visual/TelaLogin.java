@@ -100,15 +100,21 @@ public class TelaLogin extends javax.swing.JFrame {
         String usuarioDigitado=usuario.getText();
         String senhaDigitada=senha.getText();
         
-       if(usuarioDigitado.equals("admin")&& senhaDigitada.equals("123")){
-           JOptionPane.showMessageDialog (this,"login aprovado");
-       }else{
-            JOptionPane.showMessageDialog (this,"dados incorretos ou inexistentes ");
-       }
+       
+           if(usuarioDigitado.equals("admin") && senhaDigitada.equals("123")){
+//            JOptionPane.showMessageDialog(this, "Login com sucesso!");
+              //Abrir a tela Principal
+              new TelaAcoes().setVisible(true);
+              //Fechar a tela de login
+              this.dispose();
+        }else{
+            JOptionPane.showMessageDialog(this, "Falha no Login");
+        }
+      
     }//GEN-LAST:event_loginActionPerformed
 
     private void senhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_senhaActionPerformed
-        // TODO add your handling code here:
+          // TODO add your handling code here:
     }//GEN-LAST:event_senhaActionPerformed
 
     /**
