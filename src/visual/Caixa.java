@@ -5,6 +5,9 @@
  */
 package visual;
 
+import javax.swing.JOptionPane;
+import projetocaixaregistradora.Pagamentos;
+
 /**
  *
  * @author Admin
@@ -28,7 +31,7 @@ public class Caixa extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        valor = new javax.swing.JTextField();
         adiconarVenda = new javax.swing.JButton();
         pagamento = new javax.swing.JButton();
 
@@ -37,12 +40,17 @@ public class Caixa extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI Historic", 0, 14)); // NOI18N
         jLabel1.setText("VALOR DO PRODUTO");
 
-        jTextField1.setToolTipText("");
-        jTextField1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        jTextField1.setSelectionColor(new java.awt.Color(0, 153, 51));
+        valor.setToolTipText("");
+        valor.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        valor.setSelectionColor(new java.awt.Color(0, 153, 51));
 
         adiconarVenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icones/add.png"))); // NOI18N
         adiconarVenda.setText("ADICIONAR");
+        adiconarVenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adiconarVendaActionPerformed(evt);
+            }
+        });
 
         pagamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icones/accept.png"))); // NOI18N
         pagamento.setText("PAGAMENTO");
@@ -61,7 +69,7 @@ public class Caixa extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(128, 128, 128)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(valor, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(85, 85, 85)
@@ -76,7 +84,7 @@ public class Caixa extends javax.swing.JFrame {
                 .addGap(95, 95, 95)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(valor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(adiconarVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -91,6 +99,14 @@ public class Caixa extends javax.swing.JFrame {
         new TelaPagamento().setVisible(true);
     }//GEN-LAST:event_pagamentoActionPerformed
 
+    private void adiconarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adiconarVendaActionPerformed
+        double valorDigitado = Double.parseDouble(valor.getText());
+         Pagamentos novaVenda= new Pagamentos();
+         novaVenda.atualizarVenda(valorDigitado);
+         
+         JOptionPane.showMessageDialog(this, "venda realizada "+ novaVenda.getQtdeVendas());
+    }//GEN-LAST:event_adiconarVendaActionPerformed
+       
     /**
      * @param args the command line arguments
      */
@@ -130,7 +146,7 @@ public class Caixa extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton adiconarVenda;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JButton pagamento;
+    private javax.swing.JTextField valor;
     // End of variables declaration//GEN-END:variables
 }

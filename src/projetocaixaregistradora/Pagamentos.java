@@ -23,6 +23,10 @@ public class Pagamentos {
         this.valorTotal=valorTotal;
         this.tipoPagamento=tipoPagamento;
     }
+    //sobrecarregando o construtor
+    public Pagamentos(){
+       // this.valorProduto=valorProduto;
+    }
    
 
     public double getValorTotal() {
@@ -51,7 +55,7 @@ public class Pagamentos {
     
     public void atualizarVenda (double valorProduto){
         this.setValorTotal(valorProduto+getValorTotal());
-        this.qtdeVendas+=1;
+        this.setQtdeVendas(qtdeVendas);
     }
 
     public double getTroco() {
