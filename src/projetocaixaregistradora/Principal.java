@@ -17,10 +17,7 @@ public class Principal {
     public static void main(String[] args) {
         // TODO code application logic here
         
-        Pagamentos c1=new Pagamentos();
-       c1.atualizarVenda(15);
-       c1.atualizarVenda(20);
-        System.out.println( c1.getTroco(50, 1));
+      
     }
     
 }
