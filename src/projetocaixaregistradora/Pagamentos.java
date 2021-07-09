@@ -5,8 +5,6 @@
  */
 package projetocaixaregistradora;
 
-import java.util.Set;
-
 /**
  *
  * @author Admin
@@ -20,9 +18,12 @@ public class Pagamentos {
     private String tipoPagamento;
     private int qtdeVendas;
     //construtor
-    public Pagamentos(){
-        
+    public Pagamentos(double valorProduto,double valorTotal,String tipoPagamento){
+        this.valorProduto=valorProduto;
+        this.valorTotal=valorTotal;
+        this.tipoPagamento=tipoPagamento;
     }
+   
 
     public double getValorTotal() {
         return valorTotal;
@@ -47,6 +48,19 @@ public class Pagamentos {
     public void setValorRecebido(double valorRecebido) {
         this.valorRecebido = valorRecebido;
     }
+    
+    public void atualizarVenda (double valorProduto){
+        this.setValorTotal(valorProduto+getValorTotal());
+        this.qtdeVendas+=1;
+    }
+
+    public double getTroco() {
+        return troco;
+    }
+
+    public void setTroco(double troco) {
+        this.troco = troco;
+    }
 
     public String getTipoPagamento() {
         return tipoPagamento;
@@ -55,19 +69,18 @@ public class Pagamentos {
     public void setTipoPagamento(String tipoPagamento) {
         this.tipoPagamento = tipoPagamento;
     }
-    
-    
-    public void realizarVenda (double valorProduto){
-        
-            this.setValorTotal(valorProduto+getValorTotal());
-            this.qtdeVendas+=1;
-        
-       
+
+    public int getQtdeVendas() {
+        return qtdeVendas;
+    }
+
+    public void setQtdeVendas(int qtdeVendas) {
+        this.qtdeVendas = qtdeVendas;
     }
     
     // metodo para dar o troco
     public double getTroco(double valorRecebido,String tipoPagamento){
-        if(valorRecebido >= getValorTotal() && tipoPagamento.equals("dinheiro")){
+        if(tipoPagamento.equals("dinheiro") && valorRecebido >= getValorTotal()){
             this.troco = valorRecebido-getValorTotal();
         }
         return this.troco;
