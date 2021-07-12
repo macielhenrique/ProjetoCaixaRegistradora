@@ -5,27 +5,37 @@
  */
 package projetocaixaregistradora;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Admin
  */
 public class Pagamentos {
     //atributos
+    //valor digitado pelo caixa
     private double valorProduto;
+    //valor que o cliente entrega
     private double valorRecebido;
+    // valor total de todas as vendas
     private double valorTotal;
+    // atributo para receber o troco
     private  double troco;
+    // a forma de pagamento
     private String tipoPagamento;
+    // quantidade de vendas
     private int qtdeVendas;
+ 
     //construtor
-    public Pagamentos(double valorProduto,double valorTotal,String tipoPagamento){
-        this.valorProduto=valorProduto;
-        this.valorTotal=valorTotal;
+    public Pagamentos(String tipoPagamento,double valorTotal,int qtdeVendas){
         this.tipoPagamento=tipoPagamento;
+        this.valorTotal=valorTotal;
+        this.qtdeVendas=qtdeVendas;
+        
     }
     //sobrecarregando o construtor
     public Pagamentos(){
-       // this.valorProduto=valorProduto;
+        
     }
    
 
@@ -54,14 +64,11 @@ public class Pagamentos {
     }
     
     public void atualizarVenda (double valorProduto){
-        this.setValorTotal(valorProduto+getValorTotal());
-        this.setQtdeVendas(qtdeVendas);
+        this.setValorTotal(valorProduto+this.getValorTotal());
+        this.qtdeVendas++;
     }
 
-    public double getTroco() {
-        return troco;
-    }
-
+   
     public void setTroco(double troco) {
         this.troco = troco;
     }
@@ -86,6 +93,7 @@ public class Pagamentos {
     public double getTroco(double valorRecebido,String tipoPagamento){
         if(tipoPagamento.equals("dinheiro") && valorRecebido >= getValorTotal()){
             this.troco = valorRecebido-getValorTotal();
+           
         }
         return this.troco;
         

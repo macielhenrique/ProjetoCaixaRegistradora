@@ -5,6 +5,7 @@
  */
 package visual;
 
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import projetocaixaregistradora.Pagamentos;
 
@@ -13,12 +14,14 @@ import projetocaixaregistradora.Pagamentos;
  * @author Admin
  */
 public class Caixa extends javax.swing.JFrame {
-
+    
+    private Pagamentos novaVenda= new Pagamentos();
     /**
      * Creates new form Caixa
      */
     public Caixa() {
         initComponents();
+       
     }
 
     /**
@@ -30,33 +33,61 @@ public class Caixa extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
+        buttonGroup3 = new javax.swing.ButtonGroup();
+        buttonGroup4 = new javax.swing.ButtonGroup();
+        buttonGroup5 = new javax.swing.ButtonGroup();
+        buttonGroup6 = new javax.swing.ButtonGroup();
+        buttonGroup7 = new javax.swing.ButtonGroup();
+        buttonGroup8 = new javax.swing.ButtonGroup();
+        buttonGroup9 = new javax.swing.ButtonGroup();
+        buttonGroup10 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
-        valor = new javax.swing.JTextField();
-        adiconarVenda = new javax.swing.JButton();
-        pagamento = new javax.swing.JButton();
+        valorProduto = new javax.swing.JTextField();
+        finalizarVenda = new javax.swing.JButton();
+        adicionarVenda = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        valorRecebido = new javax.swing.JTextField();
+        opcPagamento = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Historic", 0, 14)); // NOI18N
         jLabel1.setText("VALOR DO PRODUTO");
 
-        valor.setToolTipText("");
-        valor.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        valor.setSelectionColor(new java.awt.Color(0, 153, 51));
+        valorProduto.setToolTipText("");
+        valorProduto.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        valorProduto.setSelectionColor(new java.awt.Color(0, 153, 51));
 
-        adiconarVenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icones/add.png"))); // NOI18N
-        adiconarVenda.setText("ADICIONAR");
-        adiconarVenda.addActionListener(new java.awt.event.ActionListener() {
+        finalizarVenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icones/accept.png"))); // NOI18N
+        finalizarVenda.setText("PAGAMENTO");
+        finalizarVenda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                adiconarVendaActionPerformed(evt);
+                finalizarVendaActionPerformed(evt);
             }
         });
 
-        pagamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icones/accept.png"))); // NOI18N
-        pagamento.setText("PAGAMENTO");
-        pagamento.addActionListener(new java.awt.event.ActionListener() {
+        adicionarVenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icones/add.png"))); // NOI18N
+        adicionarVenda.setText("ADiCIONAR");
+        adicionarVenda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pagamentoActionPerformed(evt);
+                adicionarVendaActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI Historic", 0, 14)); // NOI18N
+        jLabel2.setText("VALOR TOTAL");
+
+        valorRecebido.setEditable(false);
+        valorRecebido.setToolTipText("");
+        valorRecebido.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        valorRecebido.setSelectionColor(new java.awt.Color(0, 153, 51));
+
+        opcPagamento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dinheiro", "Credito", "Debito", " " }));
+        opcPagamento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                opcPagamentoActionPerformed(evt);
             }
         });
 
@@ -68,48 +99,79 @@ public class Caixa extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(128, 128, 128)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(valor, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(valorProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(opcPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(valorRecebido, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(85, 85, 85)
-                        .addComponent(adiconarVenda)
-                        .addGap(18, 18, 18)
-                        .addComponent(pagamento)))
-                .addContainerGap(62, Short.MAX_VALUE))
+                        .addGap(88, 88, 88)
+                        .addComponent(finalizarVenda)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(adicionarVenda)))
+                .addContainerGap(65, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(95, 95, 95)
+                .addGap(53, 53, 53)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(valor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(valorProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(valorRecebido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(opcPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(adiconarVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pagamento, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(103, Short.MAX_VALUE))
+                    .addComponent(finalizarVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(adicionarVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void pagamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pagamentoActionPerformed
-        new TelaPagamento().setVisible(true);
-    }//GEN-LAST:event_pagamentoActionPerformed
+    private void adicionarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionarVendaActionPerformed
+         double valorDigitado = Double.parseDouble(valorProduto.getText().replace(",", "."));
+            novaVenda.atualizarVenda(valorDigitado);
+            valorRecebido.setText(String.valueOf(novaVenda.getValorTotal()));
+    }//GEN-LAST:event_adicionarVendaActionPerformed
 
-    private void adiconarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adiconarVendaActionPerformed
-        double valorDigitado = Double.parseDouble(valor.getText());
-         Pagamentos novaVenda= new Pagamentos();
-         novaVenda.atualizarVenda(valorDigitado);
-         
-         JOptionPane.showMessageDialog(this, "venda realizada "+ novaVenda.getQtdeVendas());
-    }//GEN-LAST:event_adiconarVendaActionPerformed
+    private void finalizarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finalizarVendaActionPerformed
+
+        String pagamento = opcPagamento.getSelectedItem().toString(); 
+         novaVenda.setTipoPagamento(pagamento);
+         if(pagamento.equals("Dinheiro")){
+         String valorDinheiro;
+        double valorRecebido;
+        valorDinheiro=JOptionPane.showInputDialog("Precisa de troco ?");
+        valorRecebido= Double.parseDouble(valorDinheiro.replace(",", "."));
+        
+           JOptionPane.showMessageDialog(this, "o seu troco é "+novaVenda.getTroco(valorRecebido, pagamento));
+            
+        }else if(pagamento.equals("Credito")){
+            JOptionPane.showMessageDialog(this, "Compra Realizada");
+        }else{
+            JOptionPane.showMessageDialog(this, "Compra Ralizada no Debito");
+        }
+        arrayPagamentos.add(new Pagamentos(pagamento,novaVenda.getValorTotal(), novaVenda.getQtdeVendas()));
+    }//GEN-LAST:event_finalizarVendaActionPerformed
+
+    private void opcPagamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcPagamentoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_opcPagamentoActionPerformed
        
     /**
      * @param args the command line arguments
      */
+    static ArrayList<Pagamentos> arrayPagamentos = new ArrayList<>();
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -144,9 +206,22 @@ public class Caixa extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton adiconarVenda;
+    private javax.swing.JButton adicionarVenda;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup10;
+    private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.ButtonGroup buttonGroup3;
+    private javax.swing.ButtonGroup buttonGroup4;
+    private javax.swing.ButtonGroup buttonGroup5;
+    private javax.swing.ButtonGroup buttonGroup6;
+    private javax.swing.ButtonGroup buttonGroup7;
+    private javax.swing.ButtonGroup buttonGroup8;
+    private javax.swing.ButtonGroup buttonGroup9;
+    private javax.swing.JButton finalizarVenda;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JButton pagamento;
-    private javax.swing.JTextField valor;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JComboBox<String> opcPagamento;
+    private javax.swing.JTextField valorProduto;
+    private javax.swing.JTextField valorRecebido;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,6 +5,8 @@
  */
 package visual;
 
+import static visual.Caixa.arrayPagamentos;
+
 /**
  *
  * @author Admin
@@ -76,7 +78,10 @@ public class TelaAcoes extends javax.swing.JFrame {
     }//GEN-LAST:event_caixaActionPerformed
 
     private void historicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_historicoActionPerformed
-         new Historico().setVisible(true);
+        Historico historico = new Historico();
+        historico.updateTable(arrayPagamentos);
+        historico.setVisible(true);
+        
     }//GEN-LAST:event_historicoActionPerformed
 
     /**

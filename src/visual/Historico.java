@@ -5,6 +5,10 @@
  */
 package visual;
 
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+import projetocaixaregistradora.Pagamentos;
+
 /**
  *
  * @author Admin
@@ -17,6 +21,15 @@ public class Historico extends javax.swing.JFrame {
     public Historico() {
         initComponents();
     }
+    
+    
+     public void updateTable(ArrayList<Pagamentos> arrayPagamentos){
+        DefaultTableModel dtmPagamentos = (DefaultTableModel) tabelaHistorico.getModel();
+        for(int i = 0; i < arrayPagamentossize(); i++){
+            Object[] dadosPagamentos = {arrayPagamentos.get(i).getTipoPagamento(),arrayPagamentos.get(i).getValorTotal(),arrayPagamentos.get(i).getQtdeVendas()};
+            dtmPagamentos.addRow(dadosPagamentos);
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -27,20 +40,51 @@ public class Historico extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabelaHistorico = new javax.swing.JTable();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        tabelaHistorico.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "TIPO PAGAMENTO", "VALOR TOTAL", "QTDE VENDAS"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Double.class, java.lang.Integer.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tabelaHistorico);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     /**
@@ -72,6 +116,7 @@ public class Historico extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new Historico().setVisible(true);
             }
@@ -79,5 +124,11 @@ public class Historico extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tabelaHistorico;
     // End of variables declaration//GEN-END:variables
+
+    private int arrayPagamentossize() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
