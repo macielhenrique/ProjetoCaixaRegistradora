@@ -51,7 +51,7 @@ public class Caixa extends javax.swing.JFrame {
         valorRecebido = new javax.swing.JTextField();
         opcPagamento = new javax.swing.JComboBox<>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Historic", 0, 14)); // NOI18N
         jLabel1.setText("VALOR DO PRODUTO");
@@ -154,7 +154,7 @@ public class Caixa extends javax.swing.JFrame {
         valorDinheiro=JOptionPane.showInputDialog("Precisa de troco ?");
         valorRecebido= Double.parseDouble(valorDinheiro.replace(",", "."));
         
-           JOptionPane.showMessageDialog(this, "o seu troco é "+novaVenda.getTroco(valorRecebido, pagamento));
+           JOptionPane.showMessageDialog(this, "o seu troco é: "+novaVenda.getTroco(valorRecebido, pagamento)+" R$");
             
         }else if(pagamento.equals("Credito")){
             JOptionPane.showMessageDialog(this, "Compra Realizada");

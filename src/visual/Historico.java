@@ -25,7 +25,7 @@ public class Historico extends javax.swing.JFrame {
     
      public void updateTable(ArrayList<Pagamentos> arrayPagamentos){
         DefaultTableModel dtmPagamentos = (DefaultTableModel) tabelaHistorico.getModel();
-        for(int i = 0; i < arrayPagamentossize(); i++){
+        for(int i = 0; i < arrayPagamentos.size(); i++){
             Object[] dadosPagamentos = {arrayPagamentos.get(i).getTipoPagamento(),arrayPagamentos.get(i).getValorTotal(),arrayPagamentos.get(i).getQtdeVendas()};
             dtmPagamentos.addRow(dadosPagamentos);
         }
@@ -43,14 +43,11 @@ public class Historico extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaHistorico = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         tabelaHistorico.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "TIPO PAGAMENTO", "VALOR TOTAL", "QTDE VENDAS"
@@ -128,7 +125,7 @@ public class Historico extends javax.swing.JFrame {
     private javax.swing.JTable tabelaHistorico;
     // End of variables declaration//GEN-END:variables
 
-    private int arrayPagamentossize() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+   // private int arrayPagamentossize() {
+       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    //}
 }

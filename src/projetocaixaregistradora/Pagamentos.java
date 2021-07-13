@@ -91,7 +91,7 @@ public class Pagamentos {
     
     // metodo para dar o troco
     public double getTroco(double valorRecebido,String tipoPagamento){
-        if(tipoPagamento.equals("dinheiro") && valorRecebido >= getValorTotal()){
+        if(tipoPagamento.equals("Dinheiro") && valorRecebido >= getValorTotal()){
             this.troco = valorRecebido-getValorTotal();
            
         }

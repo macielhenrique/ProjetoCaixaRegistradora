@@ -90,6 +90,7 @@ public class TelaLogin extends javax.swing.JFrame {
         senha.setBounds(20, 220, 170, 22);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuarioActionPerformed
